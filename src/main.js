@@ -66,6 +66,13 @@ requestAnimationFrame(resize);
 
 const menu = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.desktop-nav');
+if (nav && !nav.querySelector('a[href="/"]')) {
+  const homeLink = document.createElement('a');
+  homeLink.href = '/';
+  homeLink.textContent = 'Home';
+  if (window.location.pathname === '/') homeLink.classList.add('active');
+  nav.prepend(homeLink);
+}
 menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') === 'true'; menu.setAttribute('aria-expanded', String(!open)); nav.classList.toggle('open', !open); });
 nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { menu.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); }));
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: 0.14 });
