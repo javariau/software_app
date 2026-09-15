@@ -1,7 +1,9 @@
 import * as THREE from 'three';
 import './style.css';
+import './pages.css';
 
 const container = document.querySelector('#three-scene');
+if (container) {
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
 camera.position.set(0, 1.3, 7.2);
@@ -68,3 +70,4 @@ menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expa
 nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { menu.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); }));
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: 0.14 });
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+}
