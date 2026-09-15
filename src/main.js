@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import './style.css';
 import './pages.css';
+import './marketing.css';
 
 const container = document.querySelector('#three-scene');
 if (container) {
@@ -85,5 +86,13 @@ if (window.location.pathname.endsWith('/services.html')) {
     services.append(detail);
   }
 }
+const whatsappButton = document.createElement('a');
+whatsappButton.className = 'floating-whatsapp';
+whatsappButton.href = 'https://wa.me/6289529559852';
+whatsappButton.target = '_blank';
+whatsappButton.rel = 'noreferrer';
+whatsappButton.setAttribute('aria-label', 'Chat WhatsApp softwareapp');
+whatsappButton.innerHTML = '<span>WA</span><b>Chat dengan kami</b>';
+document.body.append(whatsappButton);
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: 0.14 });
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
