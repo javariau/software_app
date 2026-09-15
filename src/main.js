@@ -63,6 +63,7 @@ const resize = () => {
 };
 window.addEventListener('resize', resize);
 requestAnimationFrame(resize);
+}
 
 const menu = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.desktop-nav');
@@ -75,6 +76,14 @@ if (nav && !nav.querySelector('a[href="/"]')) {
 }
 menu.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') === 'true'; menu.setAttribute('aria-expanded', String(!open)); nav.classList.toggle('open', !open); });
 nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { menu.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); }));
+if (window.location.pathname.endsWith('/services.html')) {
+  const services = document.querySelector('.page-services');
+  if (services) {
+    const detail = document.createElement('div');
+    detail.className = 'service-detail-grid';
+    detail.innerHTML = '<div><span>WHAT YOU GET</span><h3>Clear scope, thoughtful design, production-ready delivery.</h3></div><div><p>Mulai dari workshop singkat, kami bantu memilih fitur yang paling penting, menyusun pengalaman pengguna, lalu membangun produk yang siap dipakai.</p><a class="button button-primary" href="/contact.html">Konsultasikan kebutuhan <span>↗</span></a></div>';
+    services.append(detail);
+  }
+}
 const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: 0.14 });
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
-}
